@@ -1,0 +1,84 @@
+#score-line{
+	background-color: #efefef;
+	border-bottom: 1px solid black;
+	padding-bottom: 10px;
+}
+
+.team-score-box-container .label-table td{
+	border-top: none;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#team-one{
+	/*margin-top: 10px;*/
+}
+
+#team-two{
+	margin-top: -1px;
+}
+
+.team-name-label{
+	display: inline-block;
+	width: 39%;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.team-name{
+	display: inline-block;
+	width: 39%;
+	text-align: center;
+	font-size: 1.2em;
+    cursor: pointer;
+	/*font-weight: bold;*/
+}
+
+.team-name-input{
+    text-align: center;
+}
+
+.team-score-box-container{
+	display: inline-block;
+	vertical-align: middle;
+	width: 59%;
+}
+
+table{
+	margin-bottom: 0 !important;
+}
+
+.quarter{
+	width: 24%;
+	text-align: center;
+}
+
+.score-cell{
+	background-color: white;
+    cursor: pointer;
+    height: 43px;
+    vertical-align: middle !important;
+}
+
+.score-cell-input{
+    width: 100%;
+    text-align: center;
+    color: inherit;
+}
+
+.first{
+	color: red;
+}
+
+.second{
+	color: blue;
+}
+
+.third{
+	color: brown;
+}
+
+.fourth{
+	color: green;
+}

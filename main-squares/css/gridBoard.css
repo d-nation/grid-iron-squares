@@ -1,0 +1,79 @@
+#grid-area{
+	overflow: scroll;
+}
+
+#team-label-top{
+	width: 700px;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#label-grid-row{
+	width: 700px;
+	height: 100%;
+}
+
+#team-label-left-container{
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	width: 24px;
+}
+
+#team-label-left{
+    /* Rotate */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    /* End Rotate */
+
+    font-size: 1.2em;
+    height: 23px;
+    width: 300px;
+    position: absolute;
+    margin-left: -137px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+#grid-container{
+	border: 1px solid black;
+	display: inline-block;
+	vertical-align: middle;
+	width: 672px;
+}
+
+#grid-container th{
+	text-align: center;
+	border-right: 1px solid #dddddd;
+    background-color: #cccccc;
+}
+
+#grid-container .zero-zero{
+	border-right: 2px solid #dddddd;
+}
+
+.name-input{
+	width: 50px;
+}
+
+#row-body td{
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	border-right: 1px solid #dddddd;
+}
+
+#row-body th{
+	width: 20px;
+	text-align: center;
+	vertical-align: middle;
+	border-right: 2px solid #dddddd;
+    background-color: #cccccc;
+}

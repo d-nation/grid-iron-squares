@@ -1,0 +1,17 @@
+#header{
+	background-color: black;
+	padding: .5em;
+}
+.glyphicon{
+	font-size: 1.5em;
+	color: white;
+}
+.glyphicon:hover{
+    color: grey;
+}
+
+.header-sep{
+	display:inline-block;
+	width:24%;
+	text-align: center;
+}

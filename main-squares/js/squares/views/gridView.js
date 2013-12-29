@@ -80,7 +80,6 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 			if(event.keyCode === 13){
 				currentColumn = parseInt($input.parent().attr("data-col-pos"));
 
-                console.log(this.model.get("columns"))
 				this.model.get("columns")[currentColumn]["name"] = $input.val();
 				
 				this.onCloseInputs(true);
@@ -158,6 +157,8 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 
         calculateQuarterScore: function(score){
             var scoreString = "";
+
+            score = "" + score;
 
             if(score.length){
                 return parseInt(score.substring(score.length-1));

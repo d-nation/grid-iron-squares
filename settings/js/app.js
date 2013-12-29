@@ -1,5 +1,5 @@
-define( ["marionette", "reqres", "appFiles/collections/games", "settings/views/mainView"],
-    function (Marionette, reqres, Games, SettingsView) {
+define( ["marionette", "reqres", "vent", "appFiles/collections/games", "settings/views/mainView"],
+    function (Marionette, reqres, vent, Games, SettingsView) {
     "use strict";
 
     // set up the app instance
@@ -24,6 +24,11 @@ define( ["marionette", "reqres", "appFiles/collections/games", "settings/views/m
             "getGame": function(){
                 return Settings.games.at(0);
             }
+        });
+
+        Settings.listenTo(vent, "restartSettingsView", function(){
+            Settings.settingsArea.close();
+            Settings.settingsArea.show(new SettingsView());
         });
 
         Settings.settingsArea.show(new SettingsView());

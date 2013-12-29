@@ -21,7 +21,8 @@ define(['marionette'],
                 },
                 settings: {
                     pps: "5",
-                    winningPercent: [25,25,25,25]
+                    winningPercent: [25,25,25,25],
+                    isRandomized: false
                 },
                 cols: [
                     "#",

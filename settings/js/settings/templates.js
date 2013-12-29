@@ -43,8 +43,8 @@ define(function(require){
             <div id="winning-percent-warnings" class="col-xs-offset-3 col-sm-offset-4 col-xs-6 col-sm-4 alert alert-danger" style="display: none">Winnings total more than 100%</div>\
         </form>\
         <div class="navbar-fixed-bottom">\
-            <button type="button" class="btn btn-primary btn-lg btn-block">Randomize Grid</button>\
-            <button type="button" class="btn btn-danger btn-lg btn-block">Reset Game</button>\
+            <button type="button" id="randomize-btn" class="btn btn-primary btn-lg btn-block">Randomize Grid</button>\
+            <button type="button" id="reset-btn" class="btn btn-danger btn-lg btn-block">Reset Game</button>\
         </div>',
 
     gridTemplate = 

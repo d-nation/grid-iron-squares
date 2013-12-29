@@ -1,5 +1,5 @@
-define(['marionette', 'reqres', 'settings/templates'],
-    function (Marionette, reqres, templates) {
+define(['marionette', 'reqres', 'vent', 'settings/templates', 'app-files/models/game'],
+    function (Marionette, reqres, vent, templates, Game) {
         "use strict";
 
     return Marionette.ItemView.extend({
@@ -11,16 +11,16 @@ define(['marionette', 'reqres', 'settings/templates'],
 
         events: {
             "change #pps-input": "onSquarePriceChange",
-            "change .quarter-percent-input": "onQuarterPercentChange"
+            "change .quarter-percent-input": "onQuarterPercentChange",
+            "click #reset-btn": "onResetClick",
+            "click #randomize-btn": "onRandomizeClick"
         },
 
         ui: {
-            percentWarnings: "#winning-percent-warnings"
+            percentWarnings: "#winning-percent-warnings",
+            resetBtn: "#reset-btn",
+            randomizeBtn: "#randomize-btn"
         },
-
-//		regions: {
-//			grid: "#grid-container"
-//		},
 
         initialize: function(){
             this.game = reqres.request("getGame");
@@ -28,9 +28,55 @@ define(['marionette', 'reqres', 'settings/templates'],
         },
 
 		onRender: function(){
+            if(this.gameSettings["isRandomized"]){
+                this.$el.find("#randomize-btn").attr("disabled", "disabled");
+                this.ui.randomizeBtn.attr("disabled", "disabled");
+            }
 		},
 
         onDomRefresh: function(){
+        },
+
+        onResetClick: function(){
+            var reset = confirm("Resetting will clear the entire board. Are you sure you want to reset?");
+
+            if(reset){
+                this.game.set(this.game.defaults());
+                this.game.save(this.game.attributes, {
+                    success: function(){
+                        vent.trigger("restartSettingsView");
+                    }
+                });
+            }
+        },
+
+        onRandomizeClick: function(){
+            var newCols = this.shuffleArray(["0", "2", "4", "6", "8", "9", "7", "5", "3", "1"]),
+                newRows = this.shuffleArray(["9", "7", "5", "3", "1", "0", "2", "4", "6", "8"]),
+                i, j, row, cell;
+
+            //set the master columns list
+            this.game.set("cols", newCols);
+
+            //set the rows and the score of each cell in the row
+            for(i=0; i<newRows.length; i+=1){
+                row = this.game.get("rows")[i];
+
+                //set the row's score
+                row["score"] = newRows[i];
+
+                for(j=0; j<newCols.length; j+=1){
+                    cell = row["columns"][i];
+                    cell["score"] = newCols[i];
+                }
+            }
+
+            this.gameSettings["isRandomized"] = true;
+
+            this.game.set("settings", this.gameSettings);
+            this.game.save();
+
+            this.$el.find("#randomize-btn").attr("disabled", "disabled");
         },
 
         onSquarePriceChange: function(event){
@@ -142,6 +188,17 @@ define(['marionette', 'reqres', 'settings/templates'],
             else{
                 this.ui.percentWarnings.hide();
             }
+        },
+
+        shuffleArray: function(array) {
+            var i, j, temp;
+            for (i = array.length - 1; i > 0; i--) {
+               j = Math.floor(Math.random() * (i + 1));
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
         }
     });
 });

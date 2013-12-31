@@ -1,5 +1,5 @@
-define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collections/cell-owners'],
-    function (Marionette, reqres, vent, templates, CellOwners) {
+define(['marionette', 'reqres', 'vent', 'winnings/templates', 'winnings/collections/winners'],
+    function (Marionette, reqres, vent, templates, Winners) {
         "use strict";
 
     var rowView = Marionette.ItemView.extend({
@@ -16,12 +16,12 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
         },
 
         events: {
-            "click .buy-in-paid": "onPaidToggle"
+            "click .winnings-paid": "onPaidToggle"
         },
 
         initialize: function(){
             this.game = reqres.request("getGame");
-            this.paidList = this.game.get("paidIn");
+            this.paidList = this.game.get("paidOut");
         },
 
         onRender: function(){
@@ -33,31 +33,30 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
 
         onPaidToggle: function(){
             if(! this.findModelInPaidList()){
-                this.paidList[this.model.get("name")] = true;
+                this.paidList[this.model.get("qtr")] = true;
                 this.$el.removeClass("danger").addClass("success");
                 this.ui.paidIcon.removeClass("glyphicon-thumbs-down").addClass("glyphicon-thumbs-up");
 
-                this.game.set("paidIn", this.paidList);
+                this.game.set("paidOut", this.paidList);
                 this.game.save();
             }
             else{
-                delete this.paidList[this.model.get("name")];
-
+                delete this.paidList[this.model.get("qtr")];
                 this.$el.removeClass("success").addClass("danger");
                 this.ui.paidIcon.removeClass("glyphicon-thumbs-up").addClass("glyphicon-thumbs-down");
 
-                this.game.set("paidIn", this.paidList);
+                this.game.set("paidOut", this.paidList);
                 this.game.save();
             }
         },
 
         findModelInPaidList: function(){
-            return this.paidList.hasOwnProperty(this.model.get("name"));
+            return this.paidList.hasOwnProperty(this.model.get("qtr"));
         }
     });
 
     return Marionette.CompositeView.extend({
-        id: "buy-ins-table",
+        id: "winnings-table",
 
         itemView: rowView,
 
@@ -70,8 +69,21 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
         template: _.template(templates.main),
 
         initialize: function(){
+            var i, rows, columns,
+                thisView = this,
+                tempOwners = {};
             this.game = reqres.request("getGame");
             this.gameSettings = this.game.get("settings");
-        }
+
+
+
+
+
+
+//            this.collection = new CellOwners(tempOwners);
+        },
+
+		onRender: function(){
+		}
     });
 });

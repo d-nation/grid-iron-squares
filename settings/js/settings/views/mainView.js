@@ -52,28 +52,30 @@ define(['marionette', 'reqres', 'vent', 'settings/templates', 'app-files/models/
 
         onRandomizeClick: function(){
             var newCols = this.shuffleArray(["0", "2", "4", "6", "8", "9", "7", "5", "3", "1"]),
-                newRows = this.shuffleArray(["9", "7", "5", "3", "1", "0", "2", "4", "6", "8"]),
-                i, j, row, cell;
+                newRowNums = this.shuffleArray(["9", "7", "5", "3", "1", "0", "2", "4", "6", "8"]),
+                i, j, row, cell,
+                newRows = [];
 
             //set the master columns list
             this.game.set("cols", newCols);
 
             //set the rows and the score of each cell in the row
-            for(i=0; i<newRows.length; i+=1){
+            for(i=0; i<newRowNums.length; i+=1){
                 row = this.game.get("rows")[i];
 
                 //set the row's score
-                row["score"] = newRows[i];
+                row["score"] = newRowNums[i];
 
                 for(j=0; j<newCols.length; j+=1){
-                    cell = row["columns"][i];
-                    cell["score"] = newCols[i];
+                    cell = row["columns"][j];
+                    cell["score"] = newCols[j];
                 }
+                newRows.push(row)
             }
 
             this.gameSettings["isRandomized"] = true;
 
-            this.game.set("settings", this.gameSettings);
+            this.game.set({"settings": this.gameSettings, "rows": newRows});
             this.game.save();
 
             this.$el.find("#randomize-btn").attr("disabled", "disabled");

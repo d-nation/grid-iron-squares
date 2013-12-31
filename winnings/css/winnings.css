@@ -1,0 +1,29 @@
+.owner-name{
+    width:45%;
+}
+
+.winnings-square{
+    text-align: center;
+}
+
+.winnings-cell{
+    text-align: center;
+}
+
+.winnings-dollars{
+    width:45%;
+    text-align: left;
+}
+
+th{
+    font-size: 1.5em;
+}
+
+.winnings-paid{
+    text-align: center;
+}
+
+.winnings-paid .glyphicon{
+    font-size: 1.5em;
+    cursor: pointer;
+}

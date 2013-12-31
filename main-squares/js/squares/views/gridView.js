@@ -94,7 +94,11 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 
 		template: function(serialized_model){
 			return _.template(templates.grid, reqres.request("getGame").attributes);
-		}/*,
+		},
+
+		initialize: function(){
+            this.listenTo(vent, "scoreChange", this.onScoreChange);
+        }/*,
 
 		onDomRefresh: function(){
 			var parent = this.$el.parent().attr('id');
@@ -105,6 +109,10 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 		}*/
         ,
         onRender: function(){
+            this.highlightWinningSquares();
+        },
+
+        highlightWinningSquares: function(){
             var winnerSquares = this.findWinners(),
                 i,
                 tempSquare;
@@ -166,6 +174,15 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
             else{
                 return scoreString;
             }
+        },
+
+        onScoreChange: function(){
+            this.$el.find("td.first").removeClass("first");
+            this.$el.find("td.second").removeClass("second");
+            this.$el.find("td.third").removeClass("third");
+            this.$el.find("td.fourth").removeClass("fourth");
+
+            this.highlightWinningSquares();
         }
     });
 });

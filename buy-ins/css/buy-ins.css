@@ -1,0 +1,29 @@
+.owner-name{
+    width:50%;
+}
+
+.buy-in-squares{
+    text-align: center;
+}
+
+.buy-in-cell{
+    text-align: center;
+}
+
+.buy-in-dollars{
+    width:50%;
+    text-align: left;
+}
+
+th{
+    font-size: 1.5em;
+}
+
+.buy-in-paid{
+    text-align: center;
+}
+
+.buy-in-paid .glyphicon{
+    font-size: 1.5em;
+    cursor: pointer;
+}

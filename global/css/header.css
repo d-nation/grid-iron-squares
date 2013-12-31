@@ -2,16 +2,21 @@
 	background-color: black;
 	padding: .5em;
 }
-.glyphicon{
+
+#header .glyphicon{
 	font-size: 1.5em;
 	color: white;
 }
-.glyphicon:hover{
-    color: grey;
+#header .glyphicon:hover{
+    color: lightgrey;
 }
 
 .header-sep{
 	display:inline-block;
 	width:24%;
 	text-align: center;
+}
+
+#header .active{
+    color: grey;
 }

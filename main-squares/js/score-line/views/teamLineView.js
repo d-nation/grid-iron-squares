@@ -111,6 +111,7 @@ define(['marionette', 'reqres', 'vent', 'scoreLine/templates'],
                     data[thisView.options.teamNum] = thisView.model.attributes;
                     thisView.game.set(data);
                     thisView.game.save();
+                    vent.trigger("scoreChange");
                 }
                 else{
                     if($input.hasClass("team-name-input")){

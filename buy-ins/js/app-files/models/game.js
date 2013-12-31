@@ -5,7 +5,6 @@ define(['marionette'],
     return Backbone.Model.extend({
 		defaults: function(){
 			return {
-                version: "0.1",
 				teamOne: {
                     name: "Team One",
                     firstQuarter: "",
@@ -21,11 +20,8 @@ define(['marionette'],
                     fourthQuarter: ""
                 },
                 settings: {
-                    pps: "5",
-                    winningPercent: [25,25,25,25],
-                    isRandomized: false
+
                 },
-                paid: {},
                 cols: [
                     "#",
                     "#",

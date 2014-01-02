@@ -36,14 +36,14 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 				teamTwoScore = parseInt($currentTarget.attr("data-row"));
 
 			//TODO Start input sequence here
-			vent.trigger("closeInputs", false);
 			if(!$currentTarget.children(".name-input").length){
+                vent.trigger("closeInputs");
 				$currentTarget.html("<input class='name-input' type='text' value='"+$currentTarget.html()+"' />");
 				$currentTarget.children(".name-input").focus();
 			}
 		},
 
-		onCloseInputs: function(keepInputs){
+		onCloseInputs: function(){
 			var cells = this.$el.find("td"),
                 data = {},
 				currentColumn,
@@ -54,35 +54,30 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 				if($(cell).children(".name-input").length){
 					$input = $(cell).children(".name-input");
 					currentColumn = parseInt($input.parent().attr("data-col-pos"));
-					
-					if(keepInputs){
-                        data["columns"] = thisView.model.get("columns");
-						data["columns"][currentColumn]["name"] = $input.val();
 
-						$(cell).html($(cell).children(".name-input")[0].value);
-
-                        thisView.game.set(data);
-                        thisView.game.save();
-					}
-					else{
-						$(cell).html(thisView.model.get("columns")[currentColumn]["name"]);
-					}
+					$(cell).html(thisView.model.get("columns")[currentColumn]["name"]);
 				}
 			});
 		},
 
 		onKeyUp: function(event){
-			var $currentTarget = $(event.currentTarget),
-				cols = this.model.get("columns"),
-				$input = this.$el.find(".name-input"),
-				currentColumn;
+			var cells = this.$el.find("td"),
+                rows = this.game.get("rows"),
+				$input = cells.children(".name-input"),
+				currentColumn = parseInt($input.parent().attr("data-col-pos")),
+                thisView = this;
+
+            _.each(rows, function(row){
+                if(row["score"] === thisView.model.get("score")){
+                    row["columns"][currentColumn]["name"] = $input.val();
+                    thisView.model.set("columns", row["columns"]);
+                }
+            });
+
+            this.game.save();
 
 			if(event.keyCode === 13){
-				currentColumn = parseInt($input.parent().attr("data-col-pos"));
-
-				this.model.get("columns")[currentColumn]["name"] = $input.val();
-				
-				this.onCloseInputs(true);
+				this.onCloseInputs();
 			}
 		}
     });
@@ -98,16 +93,8 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
 
 		initialize: function(){
             this.listenTo(vent, "scoreChange", this.onScoreChange);
-        }/*,
+        },
 
-		onDomRefresh: function(){
-			var parent = this.$el.parent().attr('id');
-
-			if(parent === "team-two"){
-				this.$el.addClass("bottom-team");
-			}
-		}*/
-        ,
         onRender: function(){
             this.highlightWinningSquares();
         },

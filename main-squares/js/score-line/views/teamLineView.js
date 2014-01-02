@@ -85,7 +85,7 @@ define(['marionette', 'reqres', 'vent', 'scoreLine/templates'],
 
             if($input.hasClass("team-name-input")){
                 this.model.set({"name": $input.val()});
-                $input.parent().html(this.model.get("name"));
+//                $input.parent().html(this.model.get("name"));
                 vent.trigger("changeTeamName", this.$el.parent().attr("id"), this.model.get("name"))
             }
             else if($input.hasClass("score-cell-input")){

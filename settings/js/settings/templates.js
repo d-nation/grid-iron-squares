@@ -2,10 +2,14 @@ define(function(require){
     "use strict";
 
     var mainTemplate =
-        '<form class="form-horizontal" role="form">\
+        '<div id="settings-btn-container">\
+            <button type="button" id="randomize-btn" class="btn btn-primary btn-lg btn-block">Randomize Grid</button>\
+            <button type="button" id="reset-btn" class="btn btn-danger btn-lg btn-block">Reset Game</button>\
+        </div>\
+        <form class="form-horizontal" role="form">\
             <span id="save-help" class="help-block">Changes are saved automatically.</span>\
             <div class="form-group">\
-                <label for="pps-input" class="col-xs-offset-3 col-sm-offset-4 col-xs-3 col-sm-2 control-label">Square Price</label>\
+                <label for="pps-input" class="col-xs-offset-2 col-sm-offset-4 col-xs-5 col-sm-2 control-label">Square Price</label>\
                 <div class="col-xs-3 col-sm-2">\
                     <input type="number" id="pps-input" class="form-control" value="<%= pps %>">\
                 </div>\
@@ -13,39 +17,35 @@ define(function(require){
         </form>\
         <form class="form-horizontal" role="form">\
             <div class="form-group">\
-                <label for="" class="col-xs-offset-5 col-sm-offset-6 col-xs-3 col-sm-2 control-label">Winning %</label>\
+                <label for="" class="col-xs-offset-4 col-sm-offset-5 col-xs-4 col-sm-3 control-label">Winning %</label>\
                 <div class="col-xs-3 col-sm-2"></div>\
             </div>\
             <div class="form-group">\
-                <label for="pps-input" class="col-xs-offset-3 col-sm-offset-4 col-xs-3 col-sm-2 control-label">1st Quarter</label>\
+                <label for="pps-input" class="col-xs-offset-2 col-sm-offset-4 col-xs-5 col-sm-2 control-label">1st Quarter</label>\
                 <div class="col-xs-3 col-sm-2">\
                     <input type="number" id="first-weight" class="form-control quarter-percent-input" value="<%= winningPercent[0] %>">\
                 </div>\
             </div>\
             <div class="form-group">\
-                <label for="pps-input" class="col-xs-offset-3 col-sm-offset-4 col-xs-3 col-sm-2 control-label">2nd Quarter</label>\
+                <label for="pps-input" class="col-xs-offset-2 col-sm-offset-4 col-xs-5 col-sm-2 control-label">2nd Quarter</label>\
                 <div class="col-xs-3 col-sm-2">\
                     <input type="number" id="second-weight" class="form-control quarter-percent-input" value="<%= winningPercent[1] %>">\
                 </div>\
             </div>\
             <div class="form-group">\
-                <label for="pps-input" class="col-xs-offset-3 col-sm-offset-4 col-xs-3 col-sm-2 control-label">3rd Quarter</label>\
+                <label for="pps-input" class="col-xs-offset-2 col-sm-offset-4 col-xs-5 col-sm-2 control-label">3rd Quarter</label>\
                 <div class="col-xs-3 col-sm-2">\
                     <input type="number" id="third-weight" class="form-control quarter-percent-input" value="<%= winningPercent[2] %>">\
                 </div>\
             </div>\
             <div class="form-group">\
-                <label for="fourth-weight" class="col-xs-offset-3 col-sm-offset-4 col-xs-3 col-sm-2 control-label">4th Quarter</label>\
+                <label for="fourth-weight" class="col-xs-offset-2 col-sm-offset-4 col-xs-5 col-sm-2 control-label">4th Quarter</label>\
                 <div class="col-xs-3 col-sm-2">\
                     <input type="number" id="fourth-weight" class="form-control quarter-percent-input" value="<%= winningPercent[3] %>">\
                 </div>\
             </div>\
             <div id="winning-percent-warnings" class="col-xs-offset-3 col-sm-offset-4 col-xs-6 col-sm-4 alert alert-danger" style="display: none">Winnings total more than 100%</div>\
-        </form>\
-        <div class="navbar-fixed-bottom">\
-            <button type="button" id="randomize-btn" class="btn btn-primary btn-lg btn-block">Randomize Grid</button>\
-            <button type="button" id="reset-btn" class="btn btn-danger btn-lg btn-block">Reset Game</button>\
-        </div>',
+        </form>',
 
     gridTemplate = 
         '<table class="table">\

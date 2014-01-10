@@ -7,14 +7,14 @@ define(['marionette'],
 			return {
                 version: "0.1",
 				teamOne: {
-                    name: "Team One",
+                    name: "Away Team",
                     firstQuarter: "",
                     secondQuarter: "",
                     thirdQuarter: "",
                     fourthQuarter: ""
                 },
                 teamTwo: {
-                    name: "Team Two",
+                    name: "Home Team",
                     firstQuarter: "",
                     secondQuarter: "",
                     thirdQuarter: "",
@@ -41,6 +41,7 @@ define(['marionette'],
                 ],
                 rows: [
                     {
+                        pos: 0,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -56,6 +57,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 1,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -71,6 +73,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 2,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -86,6 +89,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 3,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -101,6 +105,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 4,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -116,6 +121,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 5,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -131,6 +137,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 6,
                         score: '#',
                         columns: [
                             {name: "", score: "#"},
@@ -146,6 +153,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 7,
                         score: '#',
                         columns: [
                             {name: ""},
@@ -161,6 +169,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 8,
                         score: '#',
                         columns: [
                             {name: ""},
@@ -176,6 +185,7 @@ define(['marionette'],
                         ]
                     },
                     {
+                        pos: 9,
                         score: '#',
                         columns: [
                             {name: ""},

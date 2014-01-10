@@ -16,7 +16,7 @@ define(['marionette', 'reqres', 'vent', 'winnings/templates', 'winnings/collecti
         },
 
         events: {
-            "click .winnings-paid": "onPaidToggle"
+            "click": "onPaidToggle"
         },
 
         initialize: function(){
@@ -31,7 +31,8 @@ define(['marionette', 'reqres', 'vent', 'winnings/templates', 'winnings/collecti
             }
         },
 
-        onPaidToggle: function(){
+        onPaidToggle: function(event){
+            event.stopPropagation();
             if(! this.findModelInPaidList()){
                 this.paidList[this.model.get("qtr")] = true;
                 this.$el.removeClass("danger").addClass("success");

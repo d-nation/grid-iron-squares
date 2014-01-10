@@ -84,22 +84,27 @@ define(['marionette', 'reqres', 'vent', 'scoreLine/templates'],
                 parsedInput;
 
             if($input.hasClass("team-name-input")){
-                this.model.set({"name": $input.val()});
+                this.model.set({"name": $input.val().trim()});
 //                $input.parent().html(this.model.get("name"));
                 vent.trigger("changeTeamName", this.$el.parent().attr("id"), this.model.get("name"))
             }
             else if($input.hasClass("score-cell-input")){
                 //Make sure its a number
                 try {
-                    parsedInput = parseInt($input.val());
-                    isNum = ! isNaN(parsedInput);
+                    if($input.val().trim() === ""){
+                        parsedInput = "";
+                    }
+                    else{
+                        parsedInput = parseInt($input.val().trim());
+                        isNum = ! isNaN(parsedInput);
+                    }
                 }
                 catch(e){
                     alert("Score must be a number!");
                 }
 
                 //Proceed if input is a number
-                if(isNum){
+                if(isNum || parsedInput===""){
                     if($input.parent().hasClass("first")){
                         this.model.set({"firstQuarter": parsedInput});
 //                        $input.parent().html(this.model.get("firstQuarter"));
@@ -121,19 +126,7 @@ define(['marionette', 'reqres', 'vent', 'scoreLine/templates'],
                 //Back out if the input was not a number
                 else{
                     alert("Score must be a number!");
-
-                    if($input.parent().hasClass("first")){
-                        $input.parent().html(this.model.get("firstQuarter"));
-                    }
-                    else if($input.parent().hasClass("second")){
-                        $input.parent().html(this.model.get("secondQuarter"));
-                    }
-                    else if($input.parent().hasClass("third")){
-                        $input.parent().html(this.model.get("thirdQuarter"));
-                    }
-                    else if($input.parent().hasClass("fourth")){
-                        $input.parent().html(this.model.get("fourthQuarter"));
-                    }
+                    $input.val("");
                 }
 
             }

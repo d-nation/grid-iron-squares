@@ -5,7 +5,7 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
     var rowView = Marionette.ItemView.extend({
         tagName: "tr",
 
-        className: "danger",
+        className: "buy-in-row danger",
 
         template: function(serialized_model){
             return _.template(templates.row, serialized_model);
@@ -16,7 +16,7 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
         },
 
         events: {
-            "click .buy-in-paid": "onPaidToggle"
+            "click": "onPaidToggle"
         },
 
         initialize: function(){
@@ -31,7 +31,8 @@ define(['marionette', 'reqres', 'vent', 'buy-ins/templates', 'buy-ins/collection
             }
         },
 
-        onPaidToggle: function(){
+        onPaidToggle: function(event){
+            event.stopPropagation();
             if(! this.findModelInPaidList()){
                 this.paidList[this.model.get("name")] = true;
                 this.$el.removeClass("danger").addClass("success");

@@ -68,7 +68,7 @@ define(['marionette', 'reqres', 'vent','squares/templates'],
                 thisView = this;
 
             _.each(rows, function(row){
-                if(row["score"] === thisView.model.get("score")){
+                if(row["pos"] === thisView.model.get("pos")){
                     row["columns"][currentColumn]["name"] = $input.val();
                     thisView.model.set("columns", row["columns"]);
                 }

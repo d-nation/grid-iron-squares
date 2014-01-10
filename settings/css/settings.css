@@ -1,7 +1,22 @@
+#settings{
+    width: 100%;
+}
 #save-help{
     text-align: center;
 }
 
-body{
-    padding-bottom: 95px;
+#randomize-btn{
+    margin-top: 5px;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#reset-btn{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.form-horizontal .form-group{
+    margin-right: 0;
+    margin-left: 0;
 }

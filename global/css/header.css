@@ -4,7 +4,7 @@
 }
 
 #header .glyphicon{
-	font-size: 1.5em;
+	font-size: 2.25em;
 	color: white;
 }
 #header .glyphicon:hover{
@@ -13,10 +13,14 @@
 
 .header-sep{
 	display:inline-block;
-	width:24%;
+	width:19%;
 	text-align: center;
 }
 
 #header .active{
     color: grey;
+}
+
+body{
+    padding-top: 51px;
 }

@@ -6,8 +6,7 @@ define(function(require){
             <tr>\
                 <th>Qtr</th>\
                 <th>Name</th>\
-                <th class="winnings-square">Square</th>\
-                <th class="winnings-cell">Winnings</th>\
+                <th class="winnings-cell">Won</th>\
                 <th class="winnings-paid">Paid</th>\
             </tr>\
         </thead>\
@@ -16,7 +15,6 @@ define(function(require){
         rowTemplate = 
             '<td class="winnings-qtr"><%= qtr %></td>\
             <td class="owner-name"><%= name %></td>\
-            <td class="winnings-square"><%= teamOne %>: <%= col %><br/><%= teamTwo %>: <%= row %></td>\
             <td class="winnings-cell">$<%= winnings %></td>\
             <td class="winnings-paid"><i class="glyphicon glyphicon-thumbs-down"></i></td>';
 

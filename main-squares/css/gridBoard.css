@@ -17,6 +17,7 @@
 #team-label-left-container{
 	height: 100%;
 	display: inline-block;
+    position: relative;
 	vertical-align: middle;
 	font-weight: bold;
 	width: 24px;
